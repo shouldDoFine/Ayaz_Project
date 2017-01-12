@@ -3,6 +3,8 @@ package ru.ayaz;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.File;
+
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
@@ -13,7 +15,7 @@ public class VideoTest {
 
     @Before
     public final void before() {
-        this.video = new Video("FunnyCats");
+        this.video = new Video("FunnyCats", mock(File.class));
     }
 
     @Test
