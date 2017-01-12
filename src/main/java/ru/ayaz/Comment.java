@@ -5,19 +5,32 @@ import java.util.Date;
 
 public class Comment {
 
+    private String author;
     private String text;
     private Date date;
 
-    Comment(String text) {
+    Comment(String author, String text) {
+        this.author = author;
         this.text = text;
         this.date = Calendar.getInstance().getTime();
+    }
+
+    String getAuthor() {
+        return author;
     }
 
     String getText() {
         return text;
     }
 
-    Date getDate() {
-        return date;
+    @Override
+    public boolean equals(Object o) {
+        Comment comment = (Comment) o;
+        if (author.equals(comment.getAuthor())) {
+            if (text.equals(comment.getText())) {
+                return true;
+            }
+        }
+        return false;
     }
 }
