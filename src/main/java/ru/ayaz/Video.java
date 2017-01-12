@@ -6,26 +6,31 @@ import java.util.List;
 
 class Video {
 
-    private String videoName;
-    private File videoFile;
+    private String name;
+    private File file;
     private List<Comment> comments;
 
     Video(String videoName, File videoFile) {
-        this.videoName = videoName;
-        this.videoFile = videoFile;
+        this.name = videoName;
+        this.file = videoFile;
         comments = new ArrayList<>();
     }
 
-    String getVideoName() {
-        return videoName;
+    public String getName() {
+        return name;
     }
 
-    File getVideoFile() {
-        return videoFile;
+    @Override
+    public boolean equals(Object o) {
+        Video video = (Video) o;
+        if (name.equals(video.getName())) {
+            return true;
+        }
+        return false;
     }
 
-    List<Comment> getComments() {
-        return comments;
+    boolean containsComment(Comment comment) {
+        return comments.contains(comment);
     }
 
     void addComment(Comment comment) {

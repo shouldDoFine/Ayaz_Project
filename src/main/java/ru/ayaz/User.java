@@ -1,23 +1,23 @@
 package ru.ayaz;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class User {
 
     private String nickname;
-    private Map<String, Video> userVideos;
+    private List<Video> videos;
 
     User(String nickname) {
         this.nickname = nickname;
-        userVideos = new HashMap<>();
-    }
-
-    String getNickname() {
-        return nickname;
+        videos = new ArrayList<>();
     }
 
     void addVideo(Video video) {
-        userVideos.put(video.getVideoName(), video);
+        videos.add(video);
+    }
+
+    boolean hasVideo(Video video) {
+        return videos.contains(video);
     }
 }
