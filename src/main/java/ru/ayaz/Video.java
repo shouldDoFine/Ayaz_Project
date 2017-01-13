@@ -16,20 +16,32 @@ class Video {
         comments = new ArrayList<>();
     }
 
-    public String getName() {
-        return name;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (!(o instanceof Video)) {
+            return false;
+        }
+
+        Video video = (Video) o;
+
+        return getName().equals(video.getName());
     }
 
     @Override
-    public boolean equals(Object o) {
-        Video video = (Video) o;
-        if (name.equals(video.getName())) {
-            return true;
-        }
-        return false;
+    public int hashCode() {
+        return name.hashCode();
     }
 
-    boolean containsComment(Comment comment) {
+    String getName() {
+        return name;
+    }
+
+
+    boolean hasComment(Comment comment) {
         return comments.contains(comment);
     }
 
