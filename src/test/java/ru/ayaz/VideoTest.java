@@ -1,55 +1,64 @@
 package ru.ayaz;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 
 public class VideoTest {
 
-    private Video video;
-
-    @Before
-    public final void before() {
-        this.video = new Video("FunnyCats", mock(File.class));
-    }
-
     @Test
     public void shouldContainCommentInListWhenCommentAdded() {
-        Comment comment = new Comment("Ayaz", "Hm, nice video!");
-        Comment equalComment = new Comment("Ayaz", "Hm, nice video!");
+        Video video = new Video("FunnyCats", mock(File.class));
+        Comment comment = mock(Comment.class);
 
         video.addComment(comment);
 
-        assertTrue(video.containsComment(equalComment));
+        assertTrue(video.hasComment(comment));
     }
 
     @Test
     public void shouldNotContainCommentInListWhenRemovedFromVideo() {
-        Comment comment = new Comment("Ayaz", "Hm, nice video!");
-        Comment equalComment = new Comment("Ayaz", "Hm, nice video!");
+        Video video = new Video("FunnyCats", mock(File.class));
+        Comment comment = mock(Comment.class);
         video.addComment(comment);
 
-        video.deleteComment(equalComment);
+        video.deleteComment(comment);
 
-        assertFalse(video.containsComment(comment));
+        assertFalse(video.hasComment(comment));
+    }
+
+    @Test
+    public void shouldBeEqualWhenReferencesAreSame() {
+        Video video = new Video("FunnyCats", mock(File.class));
+        Video anotherVideo = video;
+
+        assertTrue(video.equals(anotherVideo));
+    }
+
+    @Test
+    public void shouldNotBeEqualWhenInstancesAreDifferent() {
+        Video video = new Video("FunnyCats", mock(File.class));
+        Object object = mock(Comment.class);
+
+        assertFalse(video.equals(object));
     }
 
     @Test
     public void shouldBeEqualWhenNamesAreSame() {
+        Video video = new Video("FunnyCats", mock(File.class));
         Video anotherVideo = new Video("FunnyCats", mock(File.class));
 
         assertTrue(video.equals(anotherVideo));
     }
 
     @Test
-    public void shouldNotBeEqualWhenNameAreDifferent() {
-        Video anotherVideo = new Video("SadPuppies", mock(File.class));
+    public void shouldBeSameHashCodeWhenNamesAreSame() {
+        Video video = new Video("FunnyCats", mock(File.class));
+        Video anotherVideo = new Video("FunnyCats", mock(File.class));
 
-        assertFalse(video.equals(anotherVideo));
+        assertEquals(video.hashCode(), anotherVideo.hashCode());
     }
 }

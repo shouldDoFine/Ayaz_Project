@@ -3,7 +3,7 @@ package ru.ayaz;
 import java.util.ArrayList;
 import java.util.List;
 
-public class User {
+class User {
 
     private String nickname;
     private List<Video> videos;

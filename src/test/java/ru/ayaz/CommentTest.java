@@ -1,31 +1,49 @@
 package ru.ayaz;
 
-import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
 
 public class CommentTest {
 
-    private Comment comment;
+    @Test
+    public void shouldBeEqualWhenReferencesAreSame() {
+        Comment comment = new Comment("Ayaz", "Nice video!");
+        Comment anotherComment = comment;
 
-    @Before
-    public final void before() {
-        this.comment = new Comment("Ayaz", "Nice video!");
+        assertTrue(comment.equals(anotherComment));
+    }
+
+    @Test
+    public void shouldNotBeEqualWhenInstancesAreDifferent() {
+        Comment comment = new Comment("Ayaz", "Nice video!");
+        Object object = mock(Video.class);
+
+        assertFalse(comment.equals(object));
+    }
+
+    @Test
+    public void shouldNotBeEqualWhenAuthorsAreDifferent() {
+        Comment comment = new Comment("Ayaz", "Nice video!");
+        Comment anotherComment = new Comment("Alex", "Nice video!");
+
+        assertFalse(comment.equals(anotherComment));
     }
 
     @Test
     public void shouldBeEqualWhenAuthorAndTextAreSame() {
+        Comment comment = new Comment("Ayaz", "Nice video!");
         Comment anotherComment = new Comment("Ayaz", "Nice video!");
 
         assertTrue(comment.equals(anotherComment));
     }
 
     @Test
-    public void shouldNotBeEqualWhenAuthorAndTextAreDifferent() {
-        Comment anotherComment = new Comment("Alex", "Not bad");
+    public void shouldBeSameHashCodeWhenAuthorAndTextAreSame() {
+        Comment comment = new Comment("Ayaz", "Nice video!");
+        Comment anotherComment = new Comment("Ayaz", "Nice video!");
 
-        assertFalse(comment.equals(anotherComment));
+        assertEquals(comment.hashCode(), anotherComment.hashCode());
     }
 }
