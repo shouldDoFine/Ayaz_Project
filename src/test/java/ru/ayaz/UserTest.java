@@ -8,12 +8,12 @@ import static org.mockito.Mockito.mock;
 public class UserTest {
 
     @Test
-    public void shouldContainVideoInListWhenVideoAdded() {
+    public void shouldOwnVideoWhenVideoAdded() {
         User user = new User("Ayaz");
         Video video = mock(Video.class);
 
         user.addVideo(video);
 
-        assertTrue(user.hasVideo(video));
+        assertTrue(user.ownsVideo(video));
     }
 }

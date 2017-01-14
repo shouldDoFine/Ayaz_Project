@@ -32,14 +32,6 @@ class Comment {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-
-        if (!(o instanceof Comment)) {
-            return false;
-        }
-
         Comment comment = (Comment) o;
 
         if (!getAuthor().equals(comment.getAuthor())) {

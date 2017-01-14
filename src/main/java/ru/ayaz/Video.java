@@ -18,14 +18,6 @@ class Video {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-
-        if (!(o instanceof Video)) {
-            return false;
-        }
-
         Video video = (Video) o;
 
         return getName().equals(video.getName());
