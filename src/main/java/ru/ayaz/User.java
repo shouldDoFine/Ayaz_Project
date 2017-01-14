@@ -17,7 +17,7 @@ class User {
         videos.add(video);
     }
 
-    boolean hasVideo(Video video) {
+    boolean ownsVideo(Video video) {
         return videos.contains(video);
     }
 }

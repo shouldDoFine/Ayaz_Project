@@ -10,7 +10,7 @@ import static org.mockito.Mockito.mock;
 public class VideoTest {
 
     @Test
-    public void shouldContainCommentInListWhenCommentAdded() {
+    public void shouldHaveCommentWhenCommentAdded() {
         Video video = new Video("FunnyCats", mock(File.class));
         Comment comment = mock(Comment.class);
 
@@ -20,7 +20,7 @@ public class VideoTest {
     }
 
     @Test
-    public void shouldNotContainCommentInListWhenRemovedFromVideo() {
+    public void shouldNotHaveCommentWhenRemovedFromVideo() {
         Video video = new Video("FunnyCats", mock(File.class));
         Comment comment = mock(Comment.class);
         video.addComment(comment);
@@ -28,22 +28,6 @@ public class VideoTest {
         video.deleteComment(comment);
 
         assertFalse(video.hasComment(comment));
-    }
-
-    @Test
-    public void shouldBeEqualWhenReferencesAreSame() {
-        Video video = new Video("FunnyCats", mock(File.class));
-        Video anotherVideo = video;
-
-        assertTrue(video.equals(anotherVideo));
-    }
-
-    @Test
-    public void shouldNotBeEqualWhenInstancesAreDifferent() {
-        Video video = new Video("FunnyCats", mock(File.class));
-        Object object = mock(Comment.class);
-
-        assertFalse(video.equals(object));
     }
 
     @Test
@@ -55,7 +39,7 @@ public class VideoTest {
     }
 
     @Test
-    public void shouldBeSameHashCodeWhenNamesAreSame() {
+    public void shouldHaveSameHashCodeWhenNamesAreSame() {
         Video video = new Video("FunnyCats", mock(File.class));
         Video anotherVideo = new Video("FunnyCats", mock(File.class));
 
