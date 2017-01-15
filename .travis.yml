@@ -6,6 +6,7 @@ addons:
       secure: "b562657e9c20524337832edce610b861fa820cad"
 
 language: java
+script: mvn clean cobertura:cobertura org.pitest:pitest-maven:mutationCoverage sonar:sonar
 jdk:
   - oraclejdk8
 os:

@@ -2,8 +2,6 @@ package nc.students.ayaz;
 
 import org.junit.Test;
 
-import java.io.File;
-
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 
