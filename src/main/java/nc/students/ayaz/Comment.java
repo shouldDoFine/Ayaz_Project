@@ -7,20 +7,20 @@ class Comment {
 
     private String author;
     private String text;
-    private Date date;
 
     Comment(String author, String text) {
         this.author = author;
         this.text = text;
-        this.date = Calendar.getInstance().getTime();
     }
 
-    private String getAuthor() {
-        return author;
-    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-    private String getText() {
-        return text;
+        Comment comment = (Comment) o;
+
+        return author.equals(comment.author) && text.equals(comment.text);
     }
 
     @Override
@@ -28,16 +28,5 @@ class Comment {
         int result = author.hashCode();
         result = 31 * result + text.hashCode();
         return result;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        Comment comment = (Comment) o;
-
-        if (!getAuthor().equals(comment.getAuthor())) {
-            return false;
-        }
-
-        return getText().equals(comment.getText());
     }
 }
