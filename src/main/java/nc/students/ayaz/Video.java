@@ -1,5 +1,7 @@
 package nc.students.ayaz;
 
+import cobertura.IgnoreDuringCodeCoverage;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +28,7 @@ class Video {
     }
 
     @Override
+    @IgnoreDuringCodeCoverage
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -36,6 +39,7 @@ class Video {
     }
 
     @Override
+    @IgnoreDuringCodeCoverage
     public int hashCode() {
         return name.hashCode();
     }

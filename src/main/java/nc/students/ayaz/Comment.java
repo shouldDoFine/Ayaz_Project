@@ -1,7 +1,6 @@
 package nc.students.ayaz;
 
-import java.util.Calendar;
-import java.util.Date;
+import cobertura.IgnoreDuringCodeCoverage;
 
 class Comment {
 
@@ -14,6 +13,7 @@ class Comment {
     }
 
     @Override
+    @IgnoreDuringCodeCoverage
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -24,6 +24,7 @@ class Comment {
     }
 
     @Override
+    @IgnoreDuringCodeCoverage
     public int hashCode() {
         int result = author.hashCode();
         result = 31 * result + text.hashCode();
