@@ -1,4 +1,4 @@
-package ru.ayaz;
+package nc.students.ayaz;
 
 import org.junit.Test;
 
