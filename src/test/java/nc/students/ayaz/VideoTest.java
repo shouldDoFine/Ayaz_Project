@@ -11,7 +11,7 @@ public class VideoTest {
 
     @Test
     public void shouldHaveCommentWhenCommentAdded() {
-        Video video = new Video("FunnyCats", mock(File.class));
+        Video video = new Video("FunnyCats");
         Comment comment = mock(Comment.class);
 
         video.addComment(comment);
@@ -21,7 +21,7 @@ public class VideoTest {
 
     @Test
     public void shouldNotHaveCommentWhenRemovedFromVideo() {
-        Video video = new Video("FunnyCats", mock(File.class));
+        Video video = new Video("FunnyCats");
         Comment comment = mock(Comment.class);
         video.addComment(comment);
 
@@ -32,16 +32,16 @@ public class VideoTest {
 
     @Test
     public void shouldBeEqualWhenNamesAreSame() {
-        Video video = new Video("FunnyCats", mock(File.class));
-        Video anotherVideo = new Video("FunnyCats", mock(File.class));
+        Video video = new Video("FunnyCats");
+        Video anotherVideo = new Video("FunnyCats");
 
         assertTrue(video.equals(anotherVideo));
     }
 
     @Test
     public void shouldHaveSameHashCodeWhenNamesAreSame() {
-        Video video = new Video("FunnyCats", mock(File.class));
-        Video anotherVideo = new Video("FunnyCats", mock(File.class));
+        Video video = new Video("FunnyCats");
+        Video anotherVideo = new Video("FunnyCats");
 
         assertEquals(video.hashCode(), anotherVideo.hashCode());
     }

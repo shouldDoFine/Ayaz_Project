@@ -5,11 +5,9 @@ import java.util.List;
 
 class User {
 
-    private String nickname;
     private List<Video> videos;
 
-    User(String nickname) {
-        this.nickname = nickname;
+    User() {
         videos = new ArrayList<>();
     }
 

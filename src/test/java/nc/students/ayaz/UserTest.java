@@ -9,7 +9,7 @@ public class UserTest {
 
     @Test
     public void shouldOwnVideoWhenVideoAdded() {
-        User user = new User("Ayaz");
+        User user = new User();
         Video video = mock(Video.class);
 
         user.addVideo(video);

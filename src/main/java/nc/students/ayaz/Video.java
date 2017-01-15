@@ -1,37 +1,17 @@
 package nc.students.ayaz;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 class Video {
 
     private String name;
-    private File file;
     private List<Comment> comments;
 
-    Video(String videoName, File videoFile) {
+    Video(String videoName) {
         this.name = videoName;
-        this.file = videoFile;
         comments = new ArrayList<>();
     }
-
-    @Override
-    public boolean equals(Object o) {
-        Video video = (Video) o;
-
-        return getName().equals(video.getName());
-    }
-
-    @Override
-    public int hashCode() {
-        return name.hashCode();
-    }
-
-    String getName() {
-        return name;
-    }
-
 
     boolean hasComment(Comment comment) {
         return comments.contains(comment);
@@ -43,5 +23,20 @@ class Video {
 
     void deleteComment(Comment comment) {
         comments.remove(comment);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Video video = (Video) o;
+
+        return name.equals(video.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
     }
 }
