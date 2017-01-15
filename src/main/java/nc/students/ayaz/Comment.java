@@ -1,4 +1,4 @@
-package ru.ayaz;
+package nc.students.ayaz;
 
 import java.util.Calendar;
 import java.util.Date;

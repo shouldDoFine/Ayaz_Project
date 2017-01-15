@@ -1,4 +1,4 @@
-package ru.ayaz;
+package nc.students.ayaz;
 
 import java.io.File;
 import java.util.ArrayList;
