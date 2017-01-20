@@ -1,13 +1,13 @@
-package nc.students.ayaz;
+package nc.students.ayaz.model;
 
 import cobertura.IgnoreDuringCodeCoverage;
 
-class Comment {
+public class Comment {
 
     private String author;
     private String text;
 
-    Comment(String author, String text) {
+    public Comment(String author, String text) {
         this.author = author;
         this.text = text;
     }
