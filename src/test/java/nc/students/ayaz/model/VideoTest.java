@@ -1,4 +1,4 @@
-package nc.students.ayaz;
+package nc.students.ayaz.model;
 
 import org.junit.Test;
 

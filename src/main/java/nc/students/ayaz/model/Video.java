@@ -1,29 +1,33 @@
-package nc.students.ayaz;
+package nc.students.ayaz.model;
 
 import cobertura.IgnoreDuringCodeCoverage;
 
 import java.util.ArrayList;
 import java.util.List;
 
-class Video {
+public class Video {
 
     private String name;
     private List<Comment> comments;
 
-    Video(String videoName) {
+    public Video(String videoName) {
         this.name = videoName;
         comments = new ArrayList<>();
     }
 
-    boolean hasComment(Comment comment) {
+    public String getName() {
+        return name;
+    }
+
+    public boolean hasComment(Comment comment) {
         return comments.contains(comment);
     }
 
-    void addComment(Comment comment) {
+    public void addComment(Comment comment) {
         comments.add(comment);
     }
 
-    void deleteComment(Comment comment) {
+    public void deleteComment(Comment comment) {
         comments.remove(comment);
     }
 
