@@ -3,11 +3,10 @@ package nc.students.ayaz.controllers;
 
 import nc.students.ayaz.model.User;
 import nc.students.ayaz.model.Video;
-import nc.students.ayaz.model.exceptions.NoSuchVideoException;
+import nc.students.ayaz.model.exceptions.NoSuchRecourceException;
 import nc.students.ayaz.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,23 +16,23 @@ public class VideosController {
     @Autowired
     private UserRepository repository;
 
-    @RequestMapping(method = RequestMethod.POST, value = "/{videoName}")
+    @PostMapping("/{videoName}")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createVideo(@PathVariable String nickname, @PathVariable String videoName) {
+    public void createVideo(@PathVariable String nickname, @PathVariable String videoName) throws NoSuchRecourceException {
         User user = repository.getUserByNickname(nickname);
         user.addVideo(new Video(videoName));
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/{videoName}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping("/{videoName}")
     @ResponseStatus(HttpStatus.OK)
-    public Video getVideo(@PathVariable String nickname, @PathVariable String videoName) throws NoSuchVideoException {
+    public Video getVideo(@PathVariable String nickname, @PathVariable String videoName) throws NoSuchRecourceException {
         User user = repository.getUserByNickname(nickname);
         return user.getVideoByName(videoName);
     }
 
-    @ExceptionHandler(NoSuchVideoException.class)
+    @ExceptionHandler(NoSuchRecourceException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public String handleNoSuchVideoException(Exception e) {
-        return e.toString();
+    public void handleNoSuchVideoException(Exception e) {
+
     }
 }

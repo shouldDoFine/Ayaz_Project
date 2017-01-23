@@ -33,7 +33,7 @@ public class VideoTest {
         Video video = new Video("FunnyCats");
         Video anotherVideo = new Video("FunnyCats");
 
-        assertTrue(video.equals(anotherVideo));
+        assertEquals(video, anotherVideo);
     }
 
     @Test
