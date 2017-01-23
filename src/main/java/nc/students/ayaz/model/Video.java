@@ -8,26 +8,31 @@ import java.util.List;
 public class Video {
 
     private String name;
+
     private List<Comment> comments;
+
+    public Video() {
+        this.comments = new ArrayList<>();
+    }
 
     public Video(String videoName) {
         this.name = videoName;
-        comments = new ArrayList<>();
+        this.comments = new ArrayList<>();
     }
 
     public String getName() {
         return name;
     }
 
-    public boolean hasComment(Comment comment) {
+    boolean hasComment(Comment comment) {
         return comments.contains(comment);
     }
 
-    public void addComment(Comment comment) {
+    void addComment(Comment comment) {
         comments.add(comment);
     }
 
-    public void deleteComment(Comment comment) {
+    void deleteComment(Comment comment) {
         comments.remove(comment);
     }
 

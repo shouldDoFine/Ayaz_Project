@@ -2,6 +2,7 @@ package nc.students.ayaz.model;
 
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -19,15 +20,30 @@ public class UserTest {
     }
 
     @Test
-    public void shouldGetVideoWhenPassedVideoName() throws Exception {
+    public void shouldGetVideoByNameWhenItWasAddedEarlier() throws Exception {
         User user = new User("Ayaz");
-        Video expectedVideo = mock(Video.class);
-        when(expectedVideo.getName()).thenReturn("FunnyCats");
-        user.addVideo(expectedVideo);
+        Video video = mock(Video.class);
+        when(video.getName()).thenReturn("FunnyCats");
+        user.addVideo(video);
 
-        Video video = user.getVideoByName("FunnyCats");
+        Video fetchedVideo = user.getVideoByName("FunnyCats");
 
-        assertTrue(expectedVideo.equals(video));
+        assertTrue(video.equals(fetchedVideo));
+    }
 
+    @Test
+    public void shouldBeEqualWhenNamesAreSame() {
+        User user = new User("Ayaz");
+        User anotherUser = new User("Ayaz");
+
+        assertEquals(user, anotherUser);
+    }
+
+    @Test
+    public void shouldHaveSameHashCodeWhenNamesAreSame() {
+        User user = new User("Ayaz");
+        User anotherUser = new User("Ayaz");
+
+        assertEquals(user.hashCode(), anotherUser.hashCode());
     }
 }
