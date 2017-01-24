@@ -2,13 +2,13 @@ package nc.students.ayaz.controllers;
 
 import nc.students.ayaz.model.User;
 import nc.students.ayaz.model.Video;
-import nc.students.ayaz.model.exceptions.NoSuchRecourceException;
+import nc.students.ayaz.model.exceptions.NoSuchUserException;
 import nc.students.ayaz.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/users")
@@ -25,8 +25,14 @@ public class UserController {
 
     @GetMapping("/{nickname}")
     @ResponseStatus(HttpStatus.OK)
-    public Map<String, Video> getUsersVideos(@PathVariable String nickname) throws NoSuchRecourceException {
+    public List<Video> getUsersVideos(@PathVariable String nickname) throws NoSuchUserException {
         User user = repository.getUserByNickname(nickname);
         return user.getVideos();
+    }
+
+    @ExceptionHandler(NoSuchUserException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public void handleNoSuchUserException(Exception e) {
+
     }
 }

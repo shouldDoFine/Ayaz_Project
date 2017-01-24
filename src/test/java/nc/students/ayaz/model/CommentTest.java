@@ -1,6 +1,5 @@
 package nc.students.ayaz.model;
 
-import nc.students.ayaz.model.Comment;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

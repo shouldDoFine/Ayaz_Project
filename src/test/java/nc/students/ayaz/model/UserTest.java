@@ -13,14 +13,15 @@ public class UserTest {
     public void shouldOwnVideoWhenVideoAdded() {
         User user = new User("Ayaz");
         Video video = mock(Video.class);
+        when(video.getName()).thenReturn("FunnyCats");
 
         user.addVideo(video);
 
-        assertTrue(user.ownsVideo(video));
+        assertTrue(user.ownsVideo("FunnyCats"));
     }
 
     @Test
-    public void shouldGetVideoByNameWhenItWasAddedEarlier() throws Exception {
+    public void shouldBeAbleToGetVideoByNameWhenItWasAddedEarlier() throws Exception {
         User user = new User("Ayaz");
         Video video = mock(Video.class);
         when(video.getName()).thenReturn("FunnyCats");
