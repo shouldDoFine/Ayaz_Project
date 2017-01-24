@@ -2,6 +2,7 @@ package nc.students.ayaz.controllers;
 
 import nc.students.ayaz.model.User;
 import nc.students.ayaz.model.Video;
+import nc.students.ayaz.model.exceptions.NoSuchUserException;
 import nc.students.ayaz.repositories.UserRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,10 +17,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
@@ -48,13 +49,27 @@ public class UserControllerTest {
         user.addVideo(secondVideo);
         when(repository.getUserByNickname("Ayaz")).thenReturn(user);
 
-        ParameterizedTypeReference<Map<String, Video>> typeRef = new ParameterizedTypeReference<Map<String, Video>>() {};
-        ResponseEntity<Map<String, Video>> response = restTemplate.exchange("/users/Ayaz", HttpMethod.GET, HttpEntity.EMPTY, typeRef);
+
+        ResponseEntity<List<Video>> response = restTemplate.exchange(
+                "/users/Ayaz",
+                HttpMethod.GET,
+                HttpEntity.EMPTY,
+                new ParameterizedTypeReference<List<Video>>() {
+                }
+        );
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        Map<String, Video> map = new HashMap<>();
-        map.put(firstVideo.getName(), firstVideo);
-        map.put(secondVideo.getName(), secondVideo);
-        assertEquals(map, response.getBody());
+        List<Video> fetchedVideos = response.getBody();
+        assertTrue(fetchedVideos.contains(firstVideo));
+        assertTrue(fetchedVideos.contains(secondVideo));
+    }
+
+    @Test
+    public void shouldReturnNotFoundStatusCodeWhenTryingToGetNonexistentUser() throws Exception {
+        when(repository.getUserByNickname("UFOresearcher")).thenThrow(new NoSuchUserException());
+
+        ResponseEntity<String> response = restTemplate.getForEntity("/users/UFOresearcher", String.class);
+
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     }
 }

@@ -35,7 +35,7 @@ public class VideosControllerTest {
         ResponseEntity<String> response = restTemplate.postForEntity("/users/Ayaz/videos/FunnyCats", "", String.class);
 
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
-        assertTrue(user.ownsVideo(new Video("FunnyCats")));
+        assertTrue(user.ownsVideo("FunnyCats"));
     }
 
     @Test
@@ -48,8 +48,8 @@ public class VideosControllerTest {
         ResponseEntity<Video> response = restTemplate.getForEntity("/users/Ayaz/videos/FunnyCats", Video.class);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        Video fetchVideo = response.getBody();
-        assertEquals(video, fetchVideo);
+        Video fetchedVideo = response.getBody();
+        assertEquals(video, fetchedVideo);
     }
 
     @Test

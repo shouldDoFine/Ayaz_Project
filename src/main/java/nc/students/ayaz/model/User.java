@@ -1,7 +1,7 @@
 package nc.students.ayaz.model;
 
 import cobertura.IgnoreDuringCodeCoverage;
-import nc.students.ayaz.model.exceptions.NoSuchRecourceException;
+import nc.students.ayaz.model.exceptions.NoSuchVideoException;
 
 import java.util.*;
 
@@ -20,26 +20,24 @@ public class User {
         return nickname;
     }
 
-    public Map<String, Video> getVideos() {
-        return videos;
+    public List<Video> getVideos() {
+        return new ArrayList<>(videos.values());
     }
 
     public void addVideo(Video video) {
         videos.put(video.getName(), video);
     }
 
-    public boolean ownsVideo(Video video) {
-        return videos.containsKey(video.getName());
+    public boolean ownsVideo(String name) {
+        return videos.containsKey(name);
     }
 
-    public Video getVideoByName(String name) throws NoSuchRecourceException {
-        Video video = videos.get(name);
-
-        if(video == null) {
-            throw new NoSuchRecourceException();
+    public Video getVideoByName(String name) throws NoSuchVideoException {
+        if(videos.containsKey(name)){
+            return videos.get(name);
+        } else {
+            throw new NoSuchVideoException();
         }
-
-        return video;
     }
 
     @Override
@@ -50,13 +48,13 @@ public class User {
 
         User user = (User) o;
 
-        return getNickname().equals(user.getNickname());
+        return nickname.equals(user.nickname);
 
     }
 
     @Override
     @IgnoreDuringCodeCoverage
     public int hashCode() {
-        return getNickname().hashCode();
+        return nickname.hashCode();
     }
 }

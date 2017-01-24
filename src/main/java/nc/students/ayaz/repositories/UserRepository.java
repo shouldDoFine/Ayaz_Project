@@ -1,28 +1,27 @@
 package nc.students.ayaz.repositories;
 
 import nc.students.ayaz.model.User;
-import nc.students.ayaz.model.exceptions.NoSuchRecourceException;
+import nc.students.ayaz.model.exceptions.NoSuchUserException;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 
 @Repository
 public class UserRepository {
 
-    private Set<User> users = new HashSet<>();
+    private Map<String, User> users = new HashMap<>();
 
 
-    public User getUserByNickname(String nickname) throws NoSuchRecourceException {
-        for (User user : users) {
-            if (nickname.equals(user.getNickname())) {
-                return user;
-            }
+    public User getUserByNickname(String nickname) throws NoSuchUserException {
+        if (users.containsKey(nickname)) {
+            return users.get(nickname);
+        } else {
+            throw new NoSuchUserException();
         }
-        throw new NoSuchRecourceException();
     }
 
     public void addUser(User user) {
-        users.add(user);
+        users.put(user.getNickname(), user);
     }
 }
