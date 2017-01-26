@@ -9,11 +9,7 @@ public class Video {
 
     private String name;
 
-    private List<Comment> comments;
-
-    public Video() {
-        this.comments = new ArrayList<>();
-    }
+    private final List<Comment> comments;
 
     public Video(String videoName) {
         this.name = videoName;
@@ -24,16 +20,20 @@ public class Video {
         return name;
     }
 
-    boolean hasComment(Comment comment) {
-        return comments.contains(comment);
+    public List<Comment> getComments() {
+        return comments;
     }
 
-    void addComment(Comment comment) {
+    public void addComment(Comment comment) {
         comments.add(comment);
     }
 
     void deleteComment(Comment comment) {
         comments.remove(comment);
+    }
+
+    boolean hasComment(Comment comment) {
+        return comments.contains(comment);
     }
 
     @Override

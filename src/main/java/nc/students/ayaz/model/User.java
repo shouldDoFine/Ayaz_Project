@@ -3,13 +3,16 @@ package nc.students.ayaz.model;
 import cobertura.IgnoreDuringCodeCoverage;
 import nc.students.ayaz.model.exceptions.NoSuchVideoException;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-public class User {
+public final class User {
 
     private String nickname;
 
-    private Map<String, Video> videos;
+    private final Map<String, Video> videos;
 
     public User(String nickname) {
         this.nickname = nickname;
@@ -21,7 +24,7 @@ public class User {
     }
 
     public List<Video> getVideos() {
-        return new ArrayList<>(videos.values());
+        return new ArrayList<Video>(videos.values());
     }
 
     public void addVideo(Video video) {
@@ -33,7 +36,7 @@ public class User {
     }
 
     public Video getVideoByName(String name) throws NoSuchVideoException {
-        if(videos.containsKey(name)){
+        if (videos.containsKey(name)) {
             return videos.get(name);
         } else {
             throw new NoSuchVideoException();
