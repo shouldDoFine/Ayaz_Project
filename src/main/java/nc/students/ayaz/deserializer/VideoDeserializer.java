@@ -14,8 +14,8 @@ public class VideoDeserializer extends JsonDeserializer<Video> {
 
     @Override
     public Video deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
-        ObjectCodec oc = jsonParser.getCodec();
-        JsonNode node = oc.readTree(jsonParser);
+        ObjectCodec codec = jsonParser.getCodec();
+        JsonNode node = codec.readTree(jsonParser);
         Video video = new Video(node.get("name").asText());
 
         JsonNode arrayNode = node.get("comments");
@@ -29,5 +29,4 @@ public class VideoDeserializer extends JsonDeserializer<Video> {
 
         return video;
     }
-
 }
