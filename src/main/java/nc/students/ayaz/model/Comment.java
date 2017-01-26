@@ -8,10 +8,12 @@ public class Comment {
 
     private String text;
 
+    @IgnoreDuringCodeCoverage
     public String getAuthor() {
         return author;
     }
 
+    @IgnoreDuringCodeCoverage
     public String getText() {
         return text;
     }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import nc.students.ayaz.deserializer.VideoDeserializer;
+import nc.students.ayaz.model.Comment;
 import nc.students.ayaz.model.User;
 import nc.students.ayaz.model.Video;
 import nc.students.ayaz.model.exceptions.NoSuchUserException;
@@ -63,6 +64,7 @@ public class VideoControllerTest {
     public void shouldReturnUserVideosWhenGetRequestSentWithoutCertainVideoname() throws Exception {
         User user = new User("Ayaz");
         Video video = new Video("FunnyCats");
+        video.addComment(new Comment("Alex", "I like this one!"));
         user.addVideo(video);
         when(repository.getUserByNickname("Ayaz")).thenReturn(user);
 
