@@ -98,7 +98,7 @@ public class VideoControllerTest {
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         Video fetchedVideo = mapper.readValue(response.getBody(), Video.class);
-        assertTrue(fetchedVideo.equals(new Video("FunnyCats")));
+        assertEquals(fetchedVideo, new Video("FunnyCats"));
     }
 
     @Test

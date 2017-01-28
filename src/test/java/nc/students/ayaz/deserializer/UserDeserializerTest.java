@@ -19,7 +19,6 @@ public class UserDeserializerTest {
     public void shouldDeserializetWhenGivenUserJsonString() throws IOException {
         UserDeserializer deserializer = new UserDeserializer();
         ObjectMapper mapper = new ObjectMapper();
-        //String jsonString = "[{\"name\":\"FunnyCats\",\"comments\":[{\"author\":\"Alex\",\"text\":\"I like it!\"}]}]";
         String jsonString = "{\"nickname\":\"Ayaz\",\"videos\":[{\"name\":\"FunnyCats\"}]}";
         JsonParser parser = mapper.getFactory().createParser(jsonString);
         DeserializationContext context = mapper.getDeserializationContext();

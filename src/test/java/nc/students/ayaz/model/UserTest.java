@@ -29,7 +29,7 @@ public class UserTest {
 
         Video fetchedVideo = user.getVideoByName("FunnyCats");
 
-        assertTrue(video.equals(fetchedVideo));
+        assertEquals(video, fetchedVideo);
     }
 
     @Test
