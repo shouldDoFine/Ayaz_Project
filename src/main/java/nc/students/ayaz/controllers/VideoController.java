@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static java.util.Arrays.asList;
-
 @RestController
 @RequestMapping(value = "/users/{nickname}/videos")
 public class VideoController {
@@ -30,15 +28,15 @@ public class VideoController {
 
     @GetMapping("/{videoName}")
     @ResponseStatus(HttpStatus.OK)
-    public List<Video> getUsersVideos(@PathVariable String nickname, @PathVariable String videoName) throws NoSuchUserException, NoSuchVideoException {
+    public Video getSingleVideo(@PathVariable String nickname, @PathVariable String videoName) throws NoSuchUserException, NoSuchVideoException {
         User user = repository.getUserByNickname(nickname);
 
-        return asList(user.getVideoByName(videoName));
+        return user.getVideoByName(videoName);
     }
 
     @GetMapping("")
     @ResponseStatus(HttpStatus.OK)
-    public List<Video> getUsersVideos2(@PathVariable String nickname) throws NoSuchUserException, NoSuchVideoException {
+    public List<Video> getAllVideos(@PathVariable String nickname) throws NoSuchUserException, NoSuchVideoException {
         User user = repository.getUserByNickname(nickname);
 
         return user.getVideos();

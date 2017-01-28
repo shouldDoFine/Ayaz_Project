@@ -65,6 +65,7 @@ public class UserControllerTest {
                 String.class
         );
 
+        System.out.println(response.getBody());
         assertEquals(HttpStatus.OK, response.getStatusCode());
         User fetchedUser = mapper.readValue(response.getBody(), User.class);
         assertEquals(user, fetchedUser);

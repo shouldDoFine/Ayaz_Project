@@ -8,19 +8,17 @@ public class Comment {
 
     private String text;
 
-    @IgnoreDuringCodeCoverage
+    public Comment(String author, String text) {
+        this.author = author;
+        this.text = text;
+    }
+
     public String getAuthor() {
         return author;
     }
 
-    @IgnoreDuringCodeCoverage
     public String getText() {
         return text;
-    }
-
-    public Comment(String author, String text) {
-        this.author = author;
-        this.text = text;
     }
 
     @Override

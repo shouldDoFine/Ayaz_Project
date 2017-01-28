@@ -37,4 +37,18 @@ public class CommentTest {
 
         assertEquals(comment.hashCode(), anotherComment.hashCode());
     }
+
+    @Test
+    public void shouldGetAuthorWhenCommentCreated() {
+        Comment comment = new Comment("Ayaz", "Nice video!");
+
+        assertEquals("Ayaz", comment.getAuthor());
+    }
+
+    @Test
+    public void shouldGetTextWhenCommentCreated() {
+        Comment comment = new Comment("Ayaz", "Nice video!");
+
+        assertEquals("Nice video!", comment.getText());
+    }
 }

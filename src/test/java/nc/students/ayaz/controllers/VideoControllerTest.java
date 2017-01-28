@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import nc.students.ayaz.deserializer.VideoDeserializer;
-import nc.students.ayaz.model.Comment;
 import nc.students.ayaz.model.User;
 import nc.students.ayaz.model.Video;
 import nc.students.ayaz.model.exceptions.NoSuchUserException;
@@ -50,7 +49,7 @@ public class VideoControllerTest {
     }
 
     @Test
-    public void shouldAddVideoToUserWhenPostRequestSentWithVideoname() throws Exception {
+    public void shouldAddVideoToUserWhenPostRequestSentWithVideoName() throws Exception {
         User user = new User("Ayaz");
         when(repository.getUserByNickname("Ayaz")).thenReturn(user);
 
@@ -61,10 +60,9 @@ public class VideoControllerTest {
     }
 
     @Test
-    public void shouldReturnUserVideosWhenGetRequestSentWithoutCertainVideoname() throws Exception {
+    public void shouldReturnUserVideosWhenGetRequestSentWithoutCertainVideoName() throws Exception {
         User user = new User("Ayaz");
         Video video = new Video("FunnyCats");
-        video.addComment(new Comment("Alex", "I like this one!"));
         user.addVideo(video);
         when(repository.getUserByNickname("Ayaz")).thenReturn(user);
 
@@ -76,8 +74,11 @@ public class VideoControllerTest {
         );
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        List<Video> fetchedVideos = mapper.readValue(response.getBody(), new TypeReference<List<Video>>() {
-        });
+        List<Video> fetchedVideos = mapper.readValue(
+                response.getBody(),
+                new TypeReference<List<Video>>() {
+                }
+        );
         assertEquals(1, fetchedVideos.size());
         assertTrue(fetchedVideos.contains(video));
     }
@@ -96,10 +97,8 @@ public class VideoControllerTest {
         );
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        List<Video> fetchedVideos = mapper.readValue(response.getBody(), new TypeReference<List<Video>>() {
-        });
-        assertEquals(1, fetchedVideos.size());
-        assertTrue(fetchedVideos.contains(new Video("FunnyCats")));
+        Video fetchedVideo = mapper.readValue(response.getBody(), Video.class);
+        assertTrue(fetchedVideo.equals(new Video("FunnyCats")));
     }
 
     @Test

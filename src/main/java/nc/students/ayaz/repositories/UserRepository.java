@@ -12,7 +12,6 @@ public class UserRepository {
 
     private Map<String, User> users = new HashMap<>();
 
-
     public User getUserByNickname(String nickname) throws NoSuchUserException {
         if (users.containsKey(nickname)) {
             return users.get(nickname);

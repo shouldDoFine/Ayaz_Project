@@ -14,8 +14,8 @@ public class UserDeserializer extends JsonDeserializer<User> {
 
     @Override
     public User deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
-        ObjectCodec oc = jsonParser.getCodec();
-        JsonNode node = oc.readTree(jsonParser);
+        ObjectCodec codec = jsonParser.getCodec();
+        JsonNode node = codec.readTree(jsonParser);
         User user = new User(node.get("nickname").asText());
 
         JsonNode arrayNode = node.get("videos");
