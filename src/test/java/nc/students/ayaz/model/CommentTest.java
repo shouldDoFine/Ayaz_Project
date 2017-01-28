@@ -11,7 +11,7 @@ public class CommentTest {
         Comment comment = new Comment("Ayaz", "Nice video!");
         Comment anotherComment = new Comment("Alex", "Nice video!");
 
-        assertFalse(comment.equals(anotherComment));
+        assertNotEquals(comment, anotherComment);
     }
 
     @Test
@@ -19,7 +19,7 @@ public class CommentTest {
         Comment comment = new Comment("Ayaz", "Nice video!");
         Comment anotherComment = new Comment("Ayaz", "Sad video!");
 
-        assertFalse(comment.equals(anotherComment));
+        assertNotEquals(comment, anotherComment);
     }
 
     @Test
@@ -27,7 +27,7 @@ public class CommentTest {
         Comment comment = new Comment("Ayaz", "Nice video!");
         Comment anotherComment = new Comment("Ayaz", "Nice video!");
 
-        assertTrue(comment.equals(anotherComment));
+        assertEquals(comment, anotherComment);
     }
 
     @Test
