@@ -19,12 +19,10 @@ public class VideoDeserializer extends JsonDeserializer<Video> {
         Video video = new Video(node.get("name").asText());
 
         JsonNode arrayNode = node.get("comments");
-        if (arrayNode.isArray()) {
-            for (JsonNode arrayNodeObject : arrayNode) {
-                String author = arrayNodeObject.get("author").asText();
-                String text = arrayNodeObject.get("text").asText();
-                video.addComment(new Comment(author, text));
-            }
+        for (JsonNode arrayNodeObject : arrayNode) {
+            String author = arrayNodeObject.get("author").asText();
+            String text = arrayNodeObject.get("text").asText();
+            video.addComment(new Comment(author, text));
         }
 
         return video;
