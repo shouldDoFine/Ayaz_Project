@@ -10,7 +10,7 @@ import java.util.Map;
 
 public final class User {
 
-    private String nickname;
+    private final String nickname;
 
     private final Map<String, Video> videos;
 
