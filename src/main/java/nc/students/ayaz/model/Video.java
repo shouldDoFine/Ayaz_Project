@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Video {
 
-    private String name;
+    private final String name;
 
     private final List<Comment> comments;
 

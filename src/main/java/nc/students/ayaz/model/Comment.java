@@ -4,9 +4,9 @@ import cobertura.IgnoreDuringCodeCoverage;
 
 public class Comment {
 
-    private String author;
+    private final String author;
 
-    private String text;
+    private final String text;
 
     public Comment(String author, String text) {
         this.author = author;
