@@ -4,11 +4,9 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import nc.students.ayaz.model.User;
-import nc.students.ayaz.model.Video;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -26,7 +24,6 @@ public class UserDeserializerTest {
         User user = deserializer.deserialize(parser, context);
 
         assertEquals("Ayaz", user.getNickname());
-        List<Video> videos = user.getVideos();
-        assertTrue(videos.contains(new Video("FunnyCats")));
+        assertTrue(user.ownsVideo("FunnyCats"));
     }
 }
