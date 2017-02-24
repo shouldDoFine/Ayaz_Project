@@ -24,22 +24,25 @@ body {
 	box-shadow: -5px -5px #777777;
 }
 
+
+.forms {
+	text-align: center;
+}
+
+input.button {
+  	background-image: linear-gradient(to bottom left, #00ff00, #ffffff);
+	width: 300px;
+	margin: 0 auto;
+}
+
 img {
 	border: 10px solid #7AE969;
 	border-radius: 1em 4em 1em 4em / 2em 1em 2em 1em;
 }
 
-input.buttons {
-  	background-image: linear-gradient(to bottom left, #00ff00, #ffffff);
-}
-
 a {
 	text-decoration: none;
 	color: white;
-}
-
-.forms {
-	text-align: center;
 }
 
 .video {
