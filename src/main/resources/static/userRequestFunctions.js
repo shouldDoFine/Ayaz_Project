@@ -3,7 +3,7 @@ function postUser() {
     var name = document.getElementById("newName").value;
     var postRequest = new XMLHttpRequest();
 
-    postRequest.open("POST", 'users/' + name, false);
+    postRequest.open("POST", 'users/' + name, true);
 
     postRequest.send();
 
@@ -15,7 +15,7 @@ function postUser() {
 
     ReactDOM.render(
       <UserCreatedBox name = {name} />,
-      document.getElementById("signUpForm")
+      $("#signUpForm")[0]
     );
 }
 
@@ -24,25 +24,25 @@ function getUser() {
 	var name = document.getElementById("searchName").value;
     var request = new XMLHttpRequest();
 	
-	request.open("GET", "users/" + name, false);
-	
-	request.send();
-	
+
+	request.onreadystatechange = function () {
+
+    if(request.readyState == 4)
 	if(request.status != 200){
 		alert(request.status + ": " + request.statusText);
 	} else {
 		var user = JSON.parse(request.responseText);
-		
+
 		var videos = user.videos;
-		
+
 		var Video = React.createClass({
 				  render: function( ) {
-					return( 
+					return(
 							<div className="video"> {this.props.name} </div>
 					);
 				  }
 		});
-		
+
 		var VideoList = React.createClass({
 				  render: function( ) {
 					return(
@@ -60,11 +60,16 @@ function getUser() {
 
         ReactDOM.render(
             <VideoList />,
-            document.getElementById("videosContent")
+            $("#videosContent")[0]
         );
 
 	}
+	}
+
+
+	request.open("GET", "users/" + name, true);
+	request.send();
 }
 
-window.onload = document.getElementById("signUpButton").addEventListener("click", postUser, false);
-window.onload = document.getElementById("getUserButton").addEventListener("click", getUser, false);
+$("#signUpButton").on("click", postUser);
+$("#getUserButton").on("click", getUser);

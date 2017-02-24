@@ -4,39 +4,26 @@
     <title>WATCHTUBE</title>
     <meta charset="UTF-8">
     <link href="style.css" type="text/css" rel="stylesheet"/>
+	
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://unpkg.com/react@15/dist/react.js"></script>
     <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
-    <script src="userRequestFunctions.js" type="text/babel"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
 </head>
 <body>
 
-<div id="header">
-    <h1>
-        <a href="index.html">WATCHTUBE</a>
-    </h1>
-</div>
+<div id="header"></div>
 
-<div id="signUpForm" class="forms">
-    <form>
-        <p align="center">Username:
-            <input id="newName" type="text" name="name" size="15" maxlength="30"/>
-        </p>
-        <input id="signUpButton" type="button" value="Sign-up" style="width: 300px; margin: 0 auto;"/>
-    </form>
-</div>
+<div id="signUpForm" class="forms"></div>
 
-<div id="getUserForm" class="forms">
-    <form>
-        <p align="center">Username:
-            <input id="searchName" type="text" name="name" size="15" maxlength="30"/>
-        </p>
-        <input id="getUserButton" type="button" value="Search user and show videos" style="width: 300px; margin: 0 auto;"/>
-    </form>
-</div>
+<div id="userSearchForm" class="forms"></div>
 
 <div id="videosContent"></div>
+
+<script src="renderOntoDivs.js" type="text/babel"></script>
+<script src="userRequestFunctions.js" type="text/babel"></script>
 
 </body>
 </html>
