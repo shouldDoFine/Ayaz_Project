@@ -24,49 +24,47 @@ function getUser() {
 	var name = document.getElementById("searchName").value;
     var request = new XMLHttpRequest();
 	
-
 	request.onreadystatechange = function () {
+		if(request.readyState == 4){
+			if(request.status != 200){
+				alert(request.status + ": " + request.statusText);
+			} else {
+				var user = JSON.parse(request.responseText);
 
-    if(request.readyState == 4)
-	if(request.status != 200){
-		alert(request.status + ": " + request.statusText);
-	} else {
-		var user = JSON.parse(request.responseText);
+				var videos = user.videos;
 
-		var videos = user.videos;
+				var Video = React.createClass({
+						  render: function( ) {
+							return(
+									<div className="video"> {this.props.name} </div>
+							);
+						  }
+				});
 
-		var Video = React.createClass({
-				  render: function( ) {
-					return(
-							<div className="video"> {this.props.name} </div>
-					);
-				  }
-		});
-
-		var VideoList = React.createClass({
-				  render: function( ) {
-					return(
-						<div className="videos">
-								{
-									videos.map(function(element) {
-									    return <Video key = {element.name} name = {element.name} />
-									})
-								}
-						</div>
-					);
-				  }
-		});
+				var VideoList = React.createClass({
+						  render: function( ) {
+							return(
+								<div className="videos">
+										{
+											videos.map(function(element) {
+												return <Video key = {element.name} name = {element.name} />
+											})
+										}
+								</div>
+							);
+						  }
+				});
 
 
-        ReactDOM.render(
-            <VideoList />,
-            $("#videosContent")[0]
-        );
+				ReactDOM.render(
+					<VideoList />,
+					$("#videosContent")[0]
+				);
 
+			}
+		}
 	}
-	}
-
-
+	
 	request.open("GET", "users/" + name, true);
 	request.send();
 }
